@@ -1,11 +1,10 @@
 require 'active_support'
 require 'active_support/core_ext'
-require 'active_support/inflector'
 require 'erb'
 require_relative './session'
 require_relative './flash'
 
-class ControllerBase
+class RailsesqueController
   attr_reader :req, :res, :params
 
   def initialize(req, res, params = {})
@@ -21,24 +20,22 @@ class ControllerBase
 
   def redirect_to(url)
     if already_built_response?
-      raise "Error: Can't redirect twice"
+      raise "Can't redirect twice"
     end
-
-    res['Location'] = url
-    res.status = 302
     @already_built_response = true
+    res.status = 302
+    res['Location'] = url
     session.store_session(res)
     flash.store_flash(res)
   end
 
   def render_content(content, content_type)
     if already_built_response?
-      raise "Error: Can't render twice"
+      raise "Can't render twice"
     end
-
+    @already_built_response = true
     res['Content-Type'] = content_type
     res.write(content)
-    @already_built_response = true
     session.store_session(res)
     flash.store_flash(res)
   end

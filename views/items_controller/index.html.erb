@@ -1,0 +1,16 @@
+<h1>The Adventures of Stealy</h1>
+<img src="/public/stealy.jpg" >
+
+<% if flash[:notice] %>
+  Notice: <%= flash[:notice] %>
+<% end %>
+
+  <ol>
+  <% @items.each do |item| %>
+    <li>
+      <h3><%= item.name %>: <%= item.amount %></h3>
+    </li>
+    <% end %>
+  </ol>
+
+  <a href="/items/new">Add New Items!</a>

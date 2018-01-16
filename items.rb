@@ -1,5 +1,5 @@
 require 'rack'
-require_relative './lib/senro_controller.rb'
+require_relative './lib/railsesque_controller.rb'
 require_relative './lib/router'
 require_relative './lib/static'
 
@@ -52,8 +52,7 @@ class Item
 
 end
 
-
-class ItemsController < SenroController
+class ItemsController < RailsesqueController
   protect_from_forgery
 
   def create

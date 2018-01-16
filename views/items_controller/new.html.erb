@@ -1,0 +1,26 @@
+<h1>Add a new item!</h1>
+<img src="/public/stealy2.jpg" >
+
+<% if flash.now[:errors] %>
+  <ol>
+    <% flash.now[:errors].each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ol>
+<% end %>
+
+<form action="/items" method="post">
+  <input type="hidden"
+  name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
+  <label>Name
+    <input type="text" name="item[name]">
+  </label><br>
+
+  <label>Amount
+    <input type="text" name="item[amount]">
+  </label><br>
+
+  <input type="submit" value="Add Item!">
+</form>
