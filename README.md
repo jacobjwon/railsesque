@@ -31,9 +31,10 @@ The `Router` can be used to map routes between the controllers and the views.
 ```Ruby
 router = Router.new
 router.draw do
-  get Regexp.new("^/movies$"), MoviesController, :index
-  post Regexp.new("^/movies$"), MoviesController, :create
-  get Regexp.new("^/movies/(?<movie_id>\\d+)/Actors$"), ActorsController, :index
+  get Regexp.new("^/items$"), ItemsController, :index
+  get Regexp.new("^/$"), ItemsController, :index
+  get Regexp.new("^/items/new$"), ItemsController, :new
+  post Regexp.new("^/items$"), ItemsController, :create
 end
 ```
 
